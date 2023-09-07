@@ -1,0 +1,39 @@
+version: '3'
+services:
+  apache:
+    build:
+      context: ./apache
+    hostname: apache
+    container_name: apache
+    volumes:
+      - ./www:/var/www/html/
+    environment:
+      - PROJECT_DIR=/var/www/html
+    ports:
+      - 80:80
+    depends_on:
+      - php_fpm
+  php_fpm:
+    build:
+      context: ./php-fpm
+    hostname: php_fpm
+    container_name: php_fpm
+    volumes:
+      - ./www:/var/www/html/
+    ports:
+      - 9000:9000
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=ccd629993feda0cffa74288b04060dae5d8621f244cbbfd8a471530bb265e050
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mariadb
+
