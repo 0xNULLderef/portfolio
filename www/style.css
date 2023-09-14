@@ -1,0 +1,56 @@
+/* fonts */
+@font-face {
+	font-display: swap;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/poppins-v20-latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+	font-display: swap;  font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 700;
+	src: url('fonts/poppins-v20-latin-700.woff2') format('woff2'); 
+}
+
+/* globals & defaults */
+:root {
+	--highlight-bright: #c554eb;
+	--highlight: #bb26ed;
+	--highlight-alt: #b413eb;
+	--foreground: #e0e0e0;
+	--background: #110e12;
+
+	--font-size-very-large: 48pt;
+	--font-size-large: 24pt;
+	--font-size-medium: 16pt;
+
+	--transition-length: 0.2s;
+}
+
+body {
+	scroll-margin-top: 10px;
+	font-family: 'Poppins', sans-serif !important;
+}
+
+.portfolio-navbar {
+	padding: .75rem 0;
+	background: linear-gradient(var(--highlight), var(--highlight-alt));
+}
+
+.portfolio-highlight {
+	color: var(--highlight);
+}
+
+.portfolio-highlight-background {
+	background-color: var(--highlight);
+	border-color: var(--highlight);
+	--bs-btn-bg: var(--highlight);
+	--bs-btn-border-color: var(--highlight);
+	--bs-btn-hover-bg: var(--highlight-alt);
+	--bs-btn-hover-border-color: var(--highlight-alt);
+	--bs-btn-active-bg: var(--highlight-alt);
+	--bs-btn-active-border-color: var(--highlight-alt);
+}
+
