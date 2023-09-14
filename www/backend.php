@@ -27,11 +27,36 @@ function projects() {
 	);
 }
 
+function projects_add($session, $post) {
+	global $connection;
+	if($session["authorized"] ?? false) {
+		$name = $connection->real_escape_string($post["name"]);
+		$url = $connection->real_escape_string($post["url"]);
+		$description = $connection->real_escape_string($post["description"]);
+		$connection->query("INSERT INTO `projects` (`name`, `url`, `description`, `status`) VALUES ('$name', '$url', '$description', '0')");
+		echo json_encode(array("success" => true));
+	} else {
+		echo json_encode(array("success" => false));
+	}
+}
+
 function skills() {
 	global $connection;
 	echo json_encode(
 		$connection->query("SELECT * FROM `skills`;")->fetch_all(MYSQLI_ASSOC)
 	);
+}
+
+function skills_add($session, $post) {
+	global $connection;
+	if($session["authorized"] ?? false) {
+		$name = $connection->real_escape_string($post["name"]);
+		$percentage = intval($post["percentage"]);
+		$connection->query("INSERT INTO `skills` (`name`, `percentage`) VALUES ('$name', '$percentage')");
+		echo json_encode(array("success" => true));
+	} else {
+		echo json_encode(array("success" => false));
+	}
 }
 
 function login($data) {
@@ -58,7 +83,9 @@ function not_found() {
 match(array($_SERVER["REQUEST_METHOD"], array_merge($_GET, $_POST)["endpoint"] ?? null)) {
 	array("GET", "about") => about(),
 	array("GET", "projects") => projects(),
+	array("POST", "projects") => projects_add($_SESSION, $_POST),
 	array("GET", "skills") => skills(),
+	array("POST", "skills") => skills_add($_SESSION, $_POST),
 	array("POST", "login") => login($_POST),
 	array("GET", "status") => status($_SESSION),
 	default => not_found(),

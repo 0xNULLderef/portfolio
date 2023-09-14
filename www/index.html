@@ -7,10 +7,11 @@
 		<script src="bootstrap.bundle.js"></script>
 		<script src="script.js" defer></script>
 		<link rel="stylesheet" href="bootstrap.css">
+		<link rel="stylesheet" href="bootstrap-icons.css">
 		<link rel="stylesheet" href="style.css">
 		<title>Portfolio</title>
 	</head>
-	<body data-bs-theme="dark">
+	<body data-bs-theme="dark" edit="false">
 		<header class="navbar navbar-expand-lg sticky-top portfolio-navbar">
 			<nav class="container-xxl flex-lg-nowrap">
 				<a class="navbar-brand p-0 me-0 me-lg-2" href="#">Konrad Czerw</a>
@@ -33,7 +34,8 @@
 						</ul>
 						<ul class="navbar-nav flex-row flex-wrap ms-auto">
 							<li class="nav-item">
-								<button type="button" class="nav-link py-2 px-0 px-lg-2" data-bs-toggle="modal" data-bs-target="#login">Login</button>
+								<button type="button" class="not-edit nav-link py-2 px-0 px-lg-2" data-bs-toggle="modal" data-bs-target="#login">Login</button>
+								<button type="button" class="edit nav-link py-2 px-0 px-lg-2">Logout</button>
 							</li>
 						</ul>
 					</nav>
@@ -54,11 +56,33 @@
 					</div>
 				</div>
 			</section>
-			<section id="projects" class="container my-lg-4" section="projects">
-				<!-- filled in by js-->
+			<section id="projects" class="container my-lg-4">
+				<div section="projects">
+					<!-- filled in by js-->
+				</div>
+				<div class="edit project row my-2">
+					<div class="col-12 p-5 d-flex align-items-center justify-content-center bg-body-secondary">
+						<h1>
+							<button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#add-project">
+								<i class="bi bi-plus"></i>
+							</button>
+						</h1>
+					</div>
+				</div>
 			</section>
-			<section id="skills" class="container my-lg-4" section="skills">
-				<!-- filled in by js-->
+			<section id="skills" class="container my-lg-4">
+				<div section="skills">
+					<!-- filled in by js-->
+				</div>
+				<div class="edit skill row my-2">
+					<div class="col-12 p-5 d-flex align-items-center justify-content-center bg-body-tertiary">
+						<h1>
+							<button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#add-skill">
+								<i class="bi bi-plus"></i>
+							</button>
+						</h1>
+					</div>
+				</div>
 			</section>
 			<section id="contact" class="container my-lg-4">
 				<div class="contact row my-2">
@@ -94,6 +118,60 @@
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-primary">Login</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="add-project" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Add project</h1>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<form id="add-project-form">
+						<div class="modal-body">
+							<div class="mb-3">
+								<label for="project_name" class="form-label">Name:</label>
+								<input type="text" class="form-control" id="project_name" name="name" required>
+							</div>
+							<div class="mb-3">
+								<label for="url" class="form-label">URL:</label>
+								<input type="url" class="form-control" id="url" name="url" required>
+							</div>
+							<div class="mb-3">
+								<label for="description" class="form-label">Description:</label>
+								<textarea class="form-control" id="description" name="description" form="add-project-form" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">Add</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="add-skill" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Add skill</h1>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<form id="add-skill-form">
+						<div class="modal-body">
+							<div class="mb-3">
+								<label for="skill_name" class="form-label">Name:</label>
+								<input type="text" class="form-control" id="skill_name" name="name" required>
+							</div>
+							<div class="mb-3">
+								<label for="percentage" class="form-label">Percentage:</label>
+								<input type="number" min="0" max="100" class="form-control" id="percentage" name="percentage" required>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">Add</button>
 						</div>
 					</form>
 				</div>

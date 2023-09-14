@@ -34,6 +34,15 @@ body {
 	font-family: 'Poppins', sans-serif !important;
 }
 
+body[edit=false] .edit {
+	display: none;
+}
+
+
+body[edit=true] .not-edit {
+	display: none;
+}
+
 .portfolio-navbar {
 	padding: .75rem 0;
 	background: linear-gradient(var(--highlight), var(--highlight-alt));

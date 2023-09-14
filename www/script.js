@@ -98,6 +98,14 @@ const getPageSection = pageSection => document.querySelector('[section=' + pageS
 
 pages.forEach(async page => page.process(await fetchBackend(page.name), getPageSection(page.name)));
 
+const allowEdit = () => document.body.setAttribute("edit", "true");
+
+fetchBackend('status').then(response => {
+	if(response.authorized) {
+		allowEdit();
+	}
+});
+
 document.getElementById('login-form').addEventListener('submit', async function(event) {
 	event.preventDefault();
 
@@ -109,7 +117,30 @@ document.getElementById('login-form').addEventListener('submit', async function(
 		}
 	);
 	if(response.success) {
-
 	}
+});
+
+document.getElementById('add-skill-form').addEventListener('submit', async function(event) {
+	event.preventDefault();
+
+	const response = await fetchBackend(
+		'skills',
+		{
+			method: 'POST',
+			body: new FormData(this)
+		}
+	);
+});
+
+document.getElementById('add-project-form').addEventListener('submit', async function(event) {
+	event.preventDefault();
+
+	const response = await fetchBackend(
+		'projects',
+		{
+			method: 'POST',
+			body: new FormData(this)
+		}
+	);
 });
 
